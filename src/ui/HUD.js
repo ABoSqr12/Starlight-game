@@ -1,0 +1,1 @@
+export class HUD{constructor(scene){this.t=scene.add.text(950,8,'',{fontFamily:'Tahoma',fontSize:'16px',color:'#f1e7c7',rtl:true}).setOrigin(1,0);}update(s){this.t.setText(`الجولة: ${s.الجولة} | الصحة: ${s.الصحة} | السهام: ${s.السهام} | الوقت: ${Math.floor(s.الوقت)} | القتلى: ${s.القتلى} | السقوط: ${s.السقوط} | الكلاس: ${s.الكلاس_اسم} | النمط: ${s.النمط}`)}}

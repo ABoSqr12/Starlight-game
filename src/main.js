@@ -1,0 +1,14 @@
+import { BootScene } from './scenes/BootScene.js';
+import { MainMenuScene } from './scenes/MainMenuScene.js';
+import { CharacterSelectScene } from './scenes/CharacterSelectScene.js';
+import { ClassSelectScene } from './scenes/ClassSelectScene.js';
+import { StoryIntroScene } from './scenes/StoryIntroScene.js';
+import { ArenaScene } from './scenes/ArenaScene.js';
+import { RestGateScene } from './scenes/RestGateScene.js';
+import { LeaderboardScene } from './scenes/LeaderboardScene.js';
+import { AboutScene } from './scenes/AboutScene.js';
+import { SettingsScene } from './scenes/SettingsScene.js';
+import { GameOverScene } from './scenes/GameOverScene.js';
+import { EndingScene } from './scenes/EndingScene.js';
+export const حالة={الاسم:'لاعب',النمط:'نمط القصة',الشخصية:'male',الشخصية_اسم:'المسافر',الكلاس:'ronin',الكلاس_اسم:'رونين',الجولة:1,الصحة:100,السهام:6,القتلى:0,السقوط:0,الوقت:0,تحدث:[]};
+new Phaser.Game({type:Phaser.AUTO,width:960,height:540,parent:'game',backgroundColor:'#070910',pixelArt:true,scene:[BootScene,MainMenuScene,CharacterSelectScene,ClassSelectScene,StoryIntroScene,ArenaScene,RestGateScene,LeaderboardScene,AboutScene,SettingsScene,GameOverScene,EndingScene]});
