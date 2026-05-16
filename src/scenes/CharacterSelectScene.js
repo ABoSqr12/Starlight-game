@@ -1,0 +1,3 @@
+import { الشخصيات } from '../data/characters.js';import { زر } from '../ui/MenuButton.js';import { حالة } from '../main.js';
+export class CharacterSelectScene extends Phaser.Scene{constructor(){super('CharacterSelectScene');}create(){this.add.text(900,40,'اختر الشخصية',{fontFamily:'Tahoma',fontSize:'34px',color:'#f1e7c7',rtl:true}).setOrigin(1,0);
+الشخصيات.forEach((c,i)=>{زر(this,150+i*140,c.اسم,()=>{حالة.الشخصية=c.id;حالة.الشخصية_اسم=c.اسم;this.scene.start('ClassSelectScene');});this.add.text(900,180+i*140,c.وصف,{fontFamily:'Tahoma',fontSize:'16px',color:'#d8cfb2',rtl:true,wordWrap:{width:860}}).setOrigin(1,0);});}}
