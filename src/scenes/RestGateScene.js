@@ -1,0 +1,11 @@
+import { الشخصيات_الجانبية } from '../data/npcs.js';import { الحوارات } from '../data/dialogues.js';import { حالة } from '../main.js';import { DialogueBox } from '../ui/DialogueBox.js';import { صوت } from '../systems/AudioSystem.js';
+export class RestGateScene extends Phaser.Scene{constructor(){super('RestGateScene');}
+create(){this.cameras.main.fadeIn(220,0,0,0);this.a=صوت; this.a.resume(); this.a.موسيقى_الراحة();const w=960,h=540;this.add.rectangle(480,270,w,h,0x111123);for(let i=0;i<60;i++)this.add.rectangle(Phaser.Math.Between(0,w),Phaser.Math.Between(0,240),1,1,0xdfe7ff,Phaser.Math.FloatBetween(.2,.8));this.add.rectangle(480,490,w,100,0x2d2a2f);
+this.add.rectangle(200,250,80,120,0x3b3a46).setStrokeStyle(2,0x77738b);this.add.rectangle(200,210,30,50,0x1f1c24);
+const fire=this.add.circle(510,360,12,0xffb35a,0.9);this.add.circle(510,372,26,0xffb35a,0.15);this.tweens.add({targets:fire,scale:{from:0.9,to:1.12},alpha:{from:.7,to:1},duration:380,yoyo:true,repeat:-1});
+this.add.text(900,25,'بوابة الراحة',{fontFamily:'Tahoma',fontSize:'34px',color:'#f1e7c7',rtl:true}).setOrigin(1,0);
+const looks=[0x6f7488,0x7a6a59,0x5e6170,0x8f7f73,0x8aa5c9];
+الشخصيات_الجانبية.forEach((n,i)=>{const x=580+i*70;this.add.rectangle(x,362,14,28,looks[i]);this.add.rectangle(x,344,10,10,0xbfa58f);if(i===0)this.add.rectangle(x,338,10,3,0x2f241c);if(i===1)this.add.rectangle(x+16,366,10,10,0x5f5f66);if(i===3)this.add.rectangle(x,366,10,3,0x9f4e4e);if(i===4)this.add.circle(x+16,350,6,0xa5c4ef,0.45);
+this.add.text(900,95+i*70,`${i+1}. ${n.اسم} (اضغط ${i+1})`,{fontFamily:'Tahoma',fontSize:'22px',color:'#d8cfb2',rtl:true}).setOrigin(1,0);});
+const map={العجوز1:'العجوز',الحداد1:'الحداد الصامت',منشق:'المنشق من ستارلايت',طفل:'الطفل الجريح',تاجر:'تاجر المرآة'};
+this.d=new DialogueBox(this); this.input.keyboard.on('keydown',(e)=>{const idx=Number(e.key)-1;if(idx>=0&&idx<5){const key=['العجوز1','الحداد1','منشق','طفل','تاجر'][idx];let lines=[...الحوارات[key]];if(key==='العجوز1')lines=lines.concat(['لا تغترّ بانكسار الخصم، فقد يكون بابك متنكّرًا.']);const entries=lines.map(نص=>({متحدث:map[key],نص}));this.a.تفاعل();this.d.show(entries,()=>{}, {speedMode:حالة.النمط==='نمط السرعة'});if(!حالة.تحدث.includes(الشخصيات_الجانبية[idx].id))حالة.تحدث.push(الشخصيات_الجانبية[idx].id);} if(e.key==='Enter')this.scene.start('ArenaScene');});}}
